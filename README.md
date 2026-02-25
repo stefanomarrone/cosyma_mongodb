@@ -69,9 +69,12 @@ To run the program:
   * *identifier* - integer: identifier of the model
   * *version* - integer: version number of the model
 
-## Projects
-The repository has been developed in the context of the **MatForPat** PRIN project. This notwithstanding, the repository can be 
-used also for the **Cosyma** project.
+## Acknowledgement
+
+This software has been supported by Italian Ministry of University and Research (MIUR), PNRR PRIN 2022 Project: A multidisciplinary approach to evaluate ecosystems resilience under climate
+change (*MatForPat*), Grant no. P2022WC2ZZ.
+
+Even if the code has been developed in the context of the **MatForPat** PRIN project, it can be used also for the **Cosyma** project.
 
 ## License
 The software is licensed under GPL 2.0
