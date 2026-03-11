@@ -44,7 +44,11 @@ class Storage:
         dbname = self.databases['mat4pat']
         return self._post(dbname, self.image_collection_name, file, self.exists, identifier)
 
-    def _get(self, database, collection, identifier, version):
+    def getImgs(self, identifier):
+        dbname = self.databases['mat4pat']
+        return self._get_file(dbname, self.image_collection_name, identifier)
+
+    def _get(self, database, collection, identifier, version = None):
         retval = None
         dictionary = self.preparingquery(identifier, version)
         exists = self.exists(database, collection, dictionary)
@@ -55,6 +59,20 @@ class Storage:
             results = query[0]
             file = list(filesystem.find({'identifier': results['_id']}))[0]
             retval = file.read()
+        return retval
+
+    def _get_file(self, database, collection, identifier):
+        retval = None
+        dictionary = self.preparingquery(identifier)
+        exists = self.exists(database, collection, dictionary)
+        if exists:
+            db = self.client[database]
+            query = db[collection].find(dictionary)
+            filesystem = gridfs.GridFS(db)
+            #todo fare ricerca su while
+            for result in query:
+                file = list(filesystem.find({'identifier': result['_id']}))[0]
+                retval = file.read()
         return retval
 
     def exists(self, database, collection, dictionary):

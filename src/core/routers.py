@@ -40,3 +40,9 @@ def postrepomodel(configuration_name: str, file: UploadFile = File(...)) -> dict
     store = Storage(router.configuration)
     store.postImg(configuration_name, file)
     return {"success": True}
+
+@router.get("/matforpat")
+def getrepomodel(configuration_name: str) -> dict:
+    store = Storage(router.configuration)
+    retval = store.getImgs(configuration_name)
+    return Response(retval, media_type="application/x-binary")
